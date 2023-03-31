@@ -54,24 +54,26 @@ function SignUpForm(props){
             // const user = userCredential.user;
             // console.log(user);
             // ...
+            setIsLoggedIn(true);
+            if(accounttype=="student"){
+                nevigate("/studentLogin");
+            }
+            else{
+                nevigate("/administrator");
+            }
             console.log(userCredential)
+            localStorage.setItem('usertoken',userCredential.user.getIdToken());
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode, errorMessage);
+            alert(error)
             // ..
         });
  
 
         toast.success("successfully Created");
-        setIsLoggedIn(true);
-        if(accounttype=="student"){
-            nevigate("/studentLogin");
-        }
-        else{
-            nevigate("/administrator");
-        }
         
     }
     const [accounttype, setAccountType] = useState("student");
