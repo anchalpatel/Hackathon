@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+    overflow-x: hidden;
+}
+.googleButton{
+    border: 1px solid rgb(64, 64, 64);
+    border-radius: 10px;
+}
