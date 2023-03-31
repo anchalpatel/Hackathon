@@ -4,6 +4,7 @@ import {MdOutlineVisibility} from "react-icons/md"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { postData, putData } from '../utils/apiCall';
 
 const StudentLogin = (props) => {
     const accounttype = props.accounttype;
@@ -56,6 +57,7 @@ const StudentLogin = (props) => {
             return;
         }
         event.preventDefault();
+        postData("https://studynotion-11b19-default-rtdb.firebaseio.com/studentregister.json",formData)
         toast.success("successfully Created");
         setIsLoggedIn(true);
         nevigate("/studentdashboard");

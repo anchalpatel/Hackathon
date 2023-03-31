@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {AiOutlineEyeInvisible} from "react-icons/ai"
 import {MdOutlineVisibility} from "react-icons/md"
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/firebase";
 function LogInForm({setIsLoggedIn}){
     
     const [formData, setFormdata] = useState({
@@ -20,8 +22,22 @@ function LogInForm({setIsLoggedIn}){
     
     const nevigate = useNavigate();
     
-    function submitHandler(event){
+    async function submitHandler(event){
         event.preventDefault();
+
+        signInWithEmailAndPassword(auth, formData.email, formData.password)
+        .then((userCredential) => {
+            // Signed in
+            // const user = userCredential.user;
+            // navigate("/home")
+            console.log(userCredential,"++++++++++");
+        })
+        .catch((error) => {
+            console.log("Unsed ",error)
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage)
+        });
         setIsLoggedIn(true);
         nevigate("/dashboard");
     }

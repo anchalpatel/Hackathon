@@ -4,6 +4,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import axios from 'axios';
+import { postData } from "../utils/apiCall";
+import { auth } from "../utils/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 function SignUpForm(props){
     let setIsLoggedIn = props.setIsLoggedIn
@@ -34,15 +37,33 @@ function SignUpForm(props){
         setConfirmPasswordVisible(!confirmpasswordVisible);
     }
     
-    function submitHandler(event){
+    async function submitHandler(event){
         console.log(formData.password);
         console.log(formData.confirmPassword);
+
         if(formData.password!==formData.confirmPassword){
             event.preventDefault();
             toast.error("Password Doesn't match");
             return;
         }
         event.preventDefault();
+        postData("https://studynotion-11b19-default-rtdb.firebaseio.com/student.json",formData);
+        await createUserWithEmailAndPassword(auth, formData.email, formData.confirmPassword)
+        .then((userCredential) => {
+            // Signed in
+            // const user = userCredential.user;
+            // console.log(user);
+            // ...
+            console.log(userCredential)
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage);
+            // ..
+        });
+ 
+
         toast.success("successfully Created");
         setIsLoggedIn(true);
         if(accounttype=="student"){
@@ -136,7 +157,9 @@ function SignUpForm(props){
                     </label>
                 </div>
                 <div className="w-full"> 
-                    <button className="w-full py-2 bg-yellow-500 rounded-md mt-3 mb-1 text-richblack-900 font-semibold">Create Account</button>
+                    <button className="w-full py-2 bg-yellow-500 rounded-md mt-3 mb-1 text-richblack-900 font-semibold"
+                    
+                    >Create Account</button>
                 </div>
             </form>
         </div>
