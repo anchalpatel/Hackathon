@@ -33,23 +33,19 @@ function LogInForm({setIsLoggedIn}){
             // navigate("/home")
             console.log(userCredential,"++++++++++");
             setIsLoggedIn(true);
-            localStorage.setItem('usertoken',userCredential.user.getIdToken());
-            nevigate("/dashboard");
+            // localStorage.setItem('usertoken',userCredential.user);
+            console.log(userCredential.user)
+            localStorage.setItem('usertoken',userCredential.user.accesstoken);
+            // localStorage.setItem("userid",)
+            nevigate("/studentdashboard");
         })
         .catch((error) => {
             console.log("Unsed ",error)
             const errorCode = error.code;
             const errorMessage = error.message;
-<<<<<<< HEAD
-            console.log(errorCode, errorMessage);
-            alert(error)
-        });
-        
-=======
             console.log(errorCode, errorMessage)
             alert(error)
         });
->>>>>>> 63091eed304063387886c759e7b2b10b706daa21
     }
     
     function clickHandler(){

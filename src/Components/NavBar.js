@@ -5,6 +5,7 @@ function NavBar({isLoggedIn, setIsLoggedIn}){
     const nevigate = useNavigate();
     function logOutHandler(){
         setIsLoggedIn(false);
+        localStorage.clear();
         nevigate("/");
     }
     return(

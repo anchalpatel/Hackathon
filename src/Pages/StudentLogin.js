@@ -49,7 +49,7 @@ const StudentLogin = (props) => {
 
     const nevigate = useNavigate();
     
-    function submitHandler(event){
+   async function submitHandler(event){
         console.log(formData.password);
         console.log(formData.confirmPassword);
         if(formData.password!==formData.confirmPassword){
@@ -58,10 +58,11 @@ const StudentLogin = (props) => {
             return;
         }
         event.preventDefault();
-        postData("https://studynotion-11b19-default-rtdb.firebaseio.com/studentregister.json",formData)
+       const data = await postData("https://studynotion-11b19-default-rtdb.firebaseio.com/studentregister.json",formData)
         toast.success("successfully Created");
         setIsLoggedIn(true);
         nevigate("/studentdashboard");
+        localStorage.setItem("userid",data.name)
         
     }
     

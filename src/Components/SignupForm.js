@@ -47,45 +47,36 @@ function SignUpForm(props){
             return;
         }
         event.preventDefault();
-        postData("https://studynotion-11b19-default-rtdb.firebaseio.com/student.json",formData);
-        await createUserWithEmailAndPassword(auth, formData.email, formData.confirmPassword)
-        .then((userCredential) => {
-            // Signed in
-            // const user = userCredential.user;
-            // console.log(user);
-            // ...
-            setIsLoggedIn(true);
+         createUserWithEmailAndPassword(auth, formData.email, formData.confirmPassword)
+        .then(async (userCredential) => {
+            
             if(accounttype=="student"){
+                const data = await postData("https://studynotion-11b19-default-rtdb.firebaseio.com/student.json",formData)
                 nevigate("/studentLogin");
+                console.log(data,"===================================================================")
+
+                setIsLoggedIn(true);
             }
             else{
-                nevigate("/administrator");
+                const data = await postData("https://studynotion-11b19-default-rtdb.firebaseio.com/admin.json",formData)
+                nevigate("/administratordashboard");
+                localStorage.setItem("userid",data.name)
+                setIsLoggedIn(true);
             }
             console.log(userCredential)
-<<<<<<< HEAD
-            
-=======
-            localStorage.setItem('usertoken',userCredential.user.getIdToken());
->>>>>>> 63091eed304063387886c759e7b2b10b706daa21
+            // localStorage.setItem('usertoken',userCredential.user.getIdToken());
+            localStorage.setItem('usertoken',userCredential.user.accesstoken);
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode, errorMessage);
-<<<<<<< HEAD
-            localStorage.setItem('usertoken',userCredential.user.getIdToken());
-=======
             alert(error)
->>>>>>> 63091eed304063387886c759e7b2b10b706daa21
-            // ..
+            
         });
  
 
         toast.success("successfully Created");
-<<<<<<< HEAD
-        
-=======
->>>>>>> 63091eed304063387886c759e7b2b10b706daa21
         
     }
     const [accounttype, setAccountType] = useState("student");

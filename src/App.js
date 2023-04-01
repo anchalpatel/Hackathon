@@ -35,7 +35,7 @@ function App() {
               <StudentDashboard/>
           </PrivateRoute>
         } />
-        <Route path="/studenteData" element={<StudentData></StudentData>}></Route>
+        <Route path="/studentData" element={<StudentData></StudentData>}></Route>
       </Routes>
     </div>
   );
