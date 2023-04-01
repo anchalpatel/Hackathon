@@ -40,10 +40,16 @@ function LogInForm({setIsLoggedIn}){
             console.log("Unsed ",error)
             const errorCode = error.code;
             const errorMessage = error.message;
+<<<<<<< HEAD
             console.log(errorCode, errorMessage);
             alert(error)
         });
         
+=======
+            console.log(errorCode, errorMessage)
+            alert(error)
+        });
+>>>>>>> 63091eed304063387886c759e7b2b10b706daa21
     }
     
     function clickHandler(){

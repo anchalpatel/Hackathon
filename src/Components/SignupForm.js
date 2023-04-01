@@ -62,19 +62,30 @@ function SignUpForm(props){
                 nevigate("/administrator");
             }
             console.log(userCredential)
+<<<<<<< HEAD
             
+=======
+            localStorage.setItem('usertoken',userCredential.user.getIdToken());
+>>>>>>> 63091eed304063387886c759e7b2b10b706daa21
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode, errorMessage);
+<<<<<<< HEAD
             localStorage.setItem('usertoken',userCredential.user.getIdToken());
+=======
+            alert(error)
+>>>>>>> 63091eed304063387886c759e7b2b10b706daa21
             // ..
         });
  
 
         toast.success("successfully Created");
+<<<<<<< HEAD
         
+=======
+>>>>>>> 63091eed304063387886c759e7b2b10b706daa21
         
     }
     const [accounttype, setAccountType] = useState("student");
