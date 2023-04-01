@@ -8,6 +8,7 @@ import { postData } from "../utils/apiCall";
 import { auth } from "../utils/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
+
 function SignUpForm(props){
     let setIsLoggedIn = props.setIsLoggedIn
     const [formData, setFormdata] = useState({
@@ -65,7 +66,7 @@ function SignUpForm(props){
             }
             console.log(userCredential)
             // localStorage.setItem('usertoken',userCredential.user.getIdToken());
-            localStorage.setItem('usertoken',userCredential.user.accesstoken);
+            localStorage.setItem('usertoken',userCredential.user.accessToken);
         })
         .catch((error) => {
             const errorCode = error.code;

@@ -35,7 +35,7 @@ function LogInForm({setIsLoggedIn}){
             setIsLoggedIn(true);
             // localStorage.setItem('usertoken',userCredential.user);
             console.log(userCredential.user)
-            localStorage.setItem('usertoken',userCredential.user.accesstoken);
+            localStorage.setItem('usertoken',userCredential.user.accessToken);
             // localStorage.setItem("userid",)
             nevigate("/studentdashboard");
         })
