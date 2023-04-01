@@ -14,14 +14,15 @@ import Administrator from "./Pages/Adminstrator";
 import StudentData from "./Pages/StudentData";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [accounttype, setAccountType] = useState("sudent");
   return(
     <div className="bg-richblack-800 h-[100vh] w-[100vw] overflow-x-hidden box-border">
 
       <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}></NavBar>
       <Routes>
         <Route path="/" element={<Home/>}></Route>
-        <Route path="/signup" element={<SignUp setIsLoggedIn={setIsLoggedIn}></SignUp>}></Route>
-        <Route path="/login" element={<LogIn setIsLoggedIn={setIsLoggedIn}></LogIn>}></Route>
+        <Route path="/signup" element={<SignUp setIsLoggedIn={setIsLoggedIn} accounttype={accounttype} setAccountType={setAccountType}></SignUp>}></Route>
+        <Route path="/login" element={<LogIn setIsLoggedIn={setIsLoggedIn} accounttype={accounttype} setAccountType={setAccountType}></LogIn>}></Route>
         <Route path="/studentLogin" element={<StudentLogin setIsLoggedIn={setIsLoggedIn}></StudentLogin>}></Route>
         <Route path="/administrator" element={<Administrator setIsLoggedIn={setIsLoggedIn}></Administrator>}></Route>
         <Route path="/rule" element={<Rule/>}></Route>

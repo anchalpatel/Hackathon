@@ -1,7 +1,7 @@
 
 import Template from "../Components/FormTemplet";
 import hostelImg from "../assets/Hostel.png"
-function SignUp({setIsLoggedIn}){
+function SignUp({setIsLoggedIn,  accounttype, setAccountType}){
     return(
         <div>
             <Template
@@ -11,6 +11,8 @@ function SignUp({setIsLoggedIn}){
                 image={hostelImg}
                 formType="signup"
                 setIsLoggedIn={setIsLoggedIn}
+                accounttype = {accounttype}
+                setAccountType={setAccountType}
             />
         </div>
     );

@@ -1,7 +1,7 @@
 import Template from "../Components/FormTemplet";
 import vgecImage from '../assets/VGEC.jpg';
 
-function Login({setIsLoggedIn}){
+function Login({setIsLoggedIn,  accounttype, setAccountType}){
     return(
         <Template
             title="Welcome Back"
@@ -10,6 +10,8 @@ function Login({setIsLoggedIn}){
             image={vgecImage}
             formType="login"
             setIsLoggedIn={setIsLoggedIn}
+            accounttype = {accounttype}
+            setAccountType={setAccountType}
     />
     );
 }

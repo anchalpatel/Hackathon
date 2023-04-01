@@ -4,7 +4,7 @@ import {AiOutlineEyeInvisible} from "react-icons/ai"
 import {MdOutlineVisibility} from "react-icons/md"
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase";
-function LogInForm({setIsLoggedIn}){
+function LogInForm({setIsLoggedIn, accounttype, setAccountType}){
     
     const [formData, setFormdata] = useState({
         email:"",
@@ -18,6 +18,15 @@ function LogInForm({setIsLoggedIn}){
                         ...prev,
             [event.target.name] : event.target.value 
         }))
+    }
+
+    function studentClickHandler(){
+        setAccountType("student");
+        
+    }
+    function inStructorClickHandler(){
+        setAccountType("instuctor");
+        
     }
     
     const nevigate = useNavigate();
@@ -37,7 +46,12 @@ function LogInForm({setIsLoggedIn}){
             console.log(userCredential.user)
             localStorage.setItem('usertoken',userCredential.user.accessToken);
             // localStorage.setItem("userid",)
-            nevigate("/studentdashboard");
+            if (accounttype=="student"){
+                nevigate("/studentdashboard");
+            }
+            else{
+                nevigate("/administratordashboard")
+            }
         })
         .catch((error) => {
             console.log("Unsed ",error)
@@ -54,6 +68,10 @@ function LogInForm({setIsLoggedIn}){
     return(
         <div>
             <form onSubmit={submitHandler} className="flex gap-4 flex-col">
+                <div className="flex rounded-3xl border-richblack-700 bg-richblack-700 w-max">
+                    <button className={`px-4 py-2 rounded-3xl ${accounttype ==="student" ? "bg-richblack-900 text-white" : "bg-richblack-700 text-richblack-100"}`} onClick={studentClickHandler}>Student</button>
+                    <button className={`px-4 py-2 rounded-3xl ${accounttype === "instuctor" ? "bg-richblack-900 text-white" : "bg-richblack-700 text-richblack-100"}`} onClick={inStructorClickHandler}>Administrator</button>
+                </div>
                 <label className="w-[100%]">
                     <p>Email <sup className='text-pink-200'>*</sup></p>
                     <input

@@ -8,9 +8,10 @@ import { postData } from "../utils/apiCall";
 import { auth } from "../utils/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-
 function SignUpForm(props){
-    let setIsLoggedIn = props.setIsLoggedIn
+    const setIsLoggedIn = props.setIsLoggedIn
+    const accounttype = props.accounttype;
+    let setAccountType = props.setAccountType;
     const [formData, setFormdata] = useState({
         firstName:"",
         lastName:"",
@@ -66,7 +67,7 @@ function SignUpForm(props){
             }
             console.log(userCredential)
             // localStorage.setItem('usertoken',userCredential.user.getIdToken());
-            localStorage.setItem('usertoken',userCredential.user.accessToken);
+            localStorage.setItem('usertoken',userCredential.user.accesstoken);
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -80,17 +81,6 @@ function SignUpForm(props){
         toast.success("successfully Created");
         
     }
-    const [accounttype, setAccountType] = useState("student");
-
-    
-    function studentClickHandler(){
-        setAccountType("student");
-        
-    }
-    function inStructorClickHandler(){
-        setAccountType("instuctor");
-        
-    }
 
     const finalData = {
         ...formData,
@@ -100,10 +90,7 @@ function SignUpForm(props){
     return(
         <div className="mt-5">
             <form onSubmit={submitHandler} className="flex gap-4 flex-col">
-                <div className="flex rounded-3xl border-richblack-700 bg-richblack-700 w-max">
-                    <button className={`px-4 py-2 rounded-3xl ${accounttype ==="student" ? "bg-richblack-900 text-white" : "bg-richblack-700 text-richblack-100"}`} onClick={studentClickHandler}>Student</button>
-                    <button className={`px-4 py-2 rounded-3xl ${accounttype === "instuctor" ? "bg-richblack-900 text-white" : "bg-richblack-700 text-richblack-100"}`} onClick={inStructorClickHandler}>Administrator</button>
-                </div>
+               
                 <div className="flex gap-4 mt-1">
                     <label className="w-[50%]">
                         <p>First Name</p>
