@@ -11,6 +11,7 @@ import "./App.css";
 import { useState } from "react";
 import StudentLogin from "./Pages/StudentLogin";
 import Administrator from "./Pages/Adminstrator";
+import StudentData from "./Pages/StudentData";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   return(
@@ -34,6 +35,7 @@ function App() {
               <StudentDashboard/>
           </PrivateRoute>
         } />
+        <Route path="/studenteData" element={<StudentData></StudentData>}></Route>
       </Routes>
     </div>
   );

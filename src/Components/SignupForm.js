@@ -54,24 +54,27 @@ function SignUpForm(props){
             // const user = userCredential.user;
             // console.log(user);
             // ...
+            setIsLoggedIn(true);
+            if(accounttype=="student"){
+                nevigate("/studentLogin");
+            }
+            else{
+                nevigate("/administrator");
+            }
             console.log(userCredential)
+            
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode, errorMessage);
+            localStorage.setItem('usertoken',userCredential.user.getIdToken());
             // ..
         });
  
 
         toast.success("successfully Created");
-        setIsLoggedIn(true);
-        if(accounttype=="student"){
-            nevigate("/studentLogin");
-        }
-        else{
-            nevigate("/administrator");
-        }
+        
         
     }
     const [accounttype, setAccountType] = useState("student");
@@ -144,7 +147,7 @@ function SignUpForm(props){
                            
                     </label>
                     <label className="relative w-[50%]"> 
-                        <p>Cofirm password</p>
+                        <p>Confirm password</p>
                         <input
                             type={confirmpasswordVisible?("text") : ("password")}
                             name="confirmPassword"

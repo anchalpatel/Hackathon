@@ -15,7 +15,7 @@ function LogInForm({setIsLoggedIn}){
     
     function changeHandler(event){
         setFormdata((prev)=>({
-            ...prev,
+                        ...prev,
             [event.target.name] : event.target.value 
         }))
     }
@@ -24,6 +24,7 @@ function LogInForm({setIsLoggedIn}){
     
     async function submitHandler(event){
         event.preventDefault();
+        
 
         signInWithEmailAndPassword(auth, formData.email, formData.password)
         .then((userCredential) => {
@@ -31,15 +32,18 @@ function LogInForm({setIsLoggedIn}){
             // const user = userCredential.user;
             // navigate("/home")
             console.log(userCredential,"++++++++++");
+            setIsLoggedIn(true);
+            localStorage.setItem('usertoken',userCredential.user.getIdToken());
+            nevigate("/dashboard");
         })
         .catch((error) => {
             console.log("Unsed ",error)
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorCode, errorMessage)
+            console.log(errorCode, errorMessage);
+            alert(error)
         });
-        setIsLoggedIn(true);
-        nevigate("/dashboard");
+        
     }
     
     function clickHandler(){
@@ -78,3 +82,4 @@ function LogInForm({setIsLoggedIn}){
 }
 
 export default LogInForm;
+

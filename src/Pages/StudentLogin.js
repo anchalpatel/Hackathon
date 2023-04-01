@@ -26,7 +26,8 @@ const StudentLogin = (props) => {
         adhar:"",
         branch:"",
         cast:"",
-        middleName:""
+        middleName:"",
+        disable:""
     });
 
     const [createpasswordVisible, setCreatePasswordVisible] = useState(false);
@@ -310,7 +311,7 @@ const StudentLogin = (props) => {
                     <label>
                     <p >Branch Name <sup className='text-pink-200'>*</sup></p>
                     <select
-                   
+                   required
                     name="branch"
                     checked={formData.branch}
                     onChange={changeHandler}
@@ -344,7 +345,7 @@ const StudentLogin = (props) => {
                                 checked={formData.type==="regular"}
                                 className='bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px] cursor-pointer'
                             />
-                            <label className='w-full  text-[1rem] text-richblack-5 mb-1 leading-[1.375rem] cursor-pointer' htmlFor='regular'>Regular</label>
+                            <label className='w-full  text-[1rem] text-richblack-5 mb-1 leading-[1.375rem] cursor-pointer' htmlFor='Yes'>Regular</label>
                     </div>      
                         <div className="flex justify-center items-center gap-4 cursor-pointer">
                             <input
@@ -357,7 +358,7 @@ const StudentLogin = (props) => {
                                 checked={formData.type==="d2d"}
                                 className='bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px] cursor-pointer'
                             />
-                            <label className='w-full text-[1rem] text-richblack-5 mb-1 leading-[1.375rem] cursor-pointer' htmlFor='d2d'>D2D</label>
+                            <label className='w-full text-[1rem] text-richblack-5 mb-1 leading-[1.375rem] cursor-pointer' htmlFor='no'>D2D</label>
 
                         </div>
                         
@@ -383,7 +384,7 @@ const StudentLogin = (props) => {
                     <label>
                     <p >Cast<sup className='text-pink-200'>*</sup></p>
                     <select
-                   
+                    required
                     name="cast"
                     checked={formData.cast}
                     onChange={changeHandler}
@@ -401,6 +402,7 @@ const StudentLogin = (props) => {
                     <label className="w-[50%] relative">
                         <p>Create Password <sup className='text-pink-200'>*</sup></p>
                         <input
+            
                             type={createpasswordVisible?("text") : ("password")}
                             name="password"
                             value={formData.password}
@@ -411,6 +413,40 @@ const StudentLogin = (props) => {
                            
                     </label>
                 </div>
+                <fieldset>
+            <legend>Physically Disable</legend>
+                <div className='flex gap-6 items-center'>
+                    <div className="flex justify-center items-center gap-4 ">
+                        <input
+                                required
+                                type="radio"
+                                name="disable"
+                                onChange={changeHandler}
+                                value="Yes"
+                                id="Yes"
+                                checked={formData.disable==="Yes"}
+                                className='bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px] cursor-pointer'
+                            />
+                            <label className='w-full  text-[1rem] text-richblack-5 mb-1 leading-[1.375rem] cursor-pointer' htmlFor='Yes'>Yes</label>
+                    </div>      
+                        <div className="flex justify-center items-center gap-4 cursor-pointer">
+                            <input
+                                required
+                                type="radio"
+                                name="disable"
+                                onChange={changeHandler}
+                                value="no"
+                                id="no"
+                                checked={formData.disable==="no"}
+                                className='bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px] cursor-pointer'
+                            />
+                            <label className='w-full text-[1rem] text-richblack-5 mb-1 leading-[1.375rem] cursor-pointer' htmlFor='no'>No</label>
+
+                        </div>
+                        
+                </div>
+            </fieldset>
+
 
                 <div>
                 <label className="relative w-[50%]"> 
