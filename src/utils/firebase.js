@@ -8,7 +8,8 @@ const firebaseConfig={
     projectId: "studynotion-11b19",
     storageBucket: "studynotion-11b19.appspot.com",
     messagingSenderId: "861814679315",
-    appId: "1:861814679315:web:beb0c58f8ebecff5f79ce6"
+    appId: "1:861814679315:web:beb0c58f8ebecff5f79ce6",
+    synchronizeTabs: true 
   };
 
 
